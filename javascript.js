@@ -14,16 +14,18 @@ function generateNewGrid() {
     const gridSize = getGridSize();
 
     const removeOldGrid = document.querySelectorAll('.gridSquare');
-    if (removeOldGrid){
         removeOldGrid.forEach(div => {
             div.remove();
         });
-    }
+    
 
     for (let i = 0; i < gridSize; i++) {
         const squareCreator = document.createElement('div');
         squareCreator.classList.add('gridSquare');
-
+        squareCreator.addEventListener('mouseover', () => {
+            squareCreator.style.backgroundColor = getRandomColor();
+            // set opacity here?
+        });
         const gridContainer = document.querySelector('.grid-container');
         gridContainer.appendChild(squareCreator);
     }
@@ -62,31 +64,9 @@ const newGridButton = document.querySelector('.generate-new-grid');
 newGridButton.addEventListener('click', generateNewGrid);
 
 
-const squares = document.querySelectorAll('.gridSquare');
-squares.forEach(gridSquare => {
-    //set opacity here?
-    gridSquare.addEventListener('mouseover', () => {
-        gridSquare.style.backgroundColor = getRandomColor();
-    });
-});
 
 
 
 
 
 //testing:
-
-// squares.forEach(gridSquare => {
-//     gridSquare.addEventListener('mouseover', () => {
-//         console.log('moused indeed');
-//     })
-// });
-
-
-// const squares = document.querySelectorAll('.gridSquare');
-// squares.forEach(gridSquare => {
-//     //set opacity here?
-//     gridSquare.addEventListener('mouseover', () => {
-//         gridSquare.style.backgroundColor = getRandomColor();
-//     });
-// });
