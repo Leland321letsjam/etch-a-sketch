@@ -1,15 +1,36 @@
 function initializeGrid() {
     for (let i = 0; i < 256; i++) {
-        const gridSquare = document.createElement('div');
-        gridSquare.classList.add('gridSquares');
+        const squareCreator = document.createElement('div');
+        squareCreator.classList.add('gridSquare');
         const gridContainer = document.querySelector('.grid-container');
-        gridContainer.appendChild(gridSquare);
+        gridContainer.appendChild(squareCreator);
     }
 };
 
 //initializeGrid();
 
 function generateNewGrid() {
+    
+    const gridSize = getGridSize();
+
+    const removeOldGrid = document.querySelectorAll('.gridSquare');
+    if (removeOldGrid){
+        removeOldGrid.forEach(div => {
+            div.remove();
+        });
+    }
+
+    for (let i = 0; i < gridSize; i++) {
+        const squareCreator = document.createElement('div');
+        squareCreator.classList.add('gridSquare');
+
+        const gridContainer = document.querySelector('.grid-container');
+        gridContainer.appendChild(squareCreator);
+    }
+
+}
+
+function getGridSize () {
     let gridSize = prompt('Please enter a number 1-100');
 
     while(gridSize > 100 || gridSize < 1) {
@@ -24,28 +45,48 @@ function generateNewGrid() {
 
     gridSize = Math.round(gridSize);
     gridSize = gridSize * gridSize;
+    return gridSize;
 
-    const removeOldGrid = document.querySelectorAll('.gridSquares');
-    if (removeOldGrid){
-        removeOldGrid.forEach(div => {
-            div.remove();
-        });
+}
+
+function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
     }
-
-    for (let i = 0; i < gridSize; i++) {
-        const gridSquare = document.createElement('div');
-        gridSquare.classList.add('gridSquares');
-        const gridContainer = document.querySelector('.grid-container');
-        gridContainer.appendChild(gridSquare);
-    }
-
+    return color;
 }
 
 const newGridButton = document.querySelector('.generate-new-grid');
 newGridButton.addEventListener('click', generateNewGrid);
 
 
+const squares = document.querySelectorAll('.gridSquare');
+squares.forEach(gridSquare => {
+    //set opacity here?
+    gridSquare.addEventListener('mouseover', () => {
+        gridSquare.style.backgroundColor = getRandomColor();
+    });
+});
+
+
+
 
 
 //testing:
 
+// squares.forEach(gridSquare => {
+//     gridSquare.addEventListener('mouseover', () => {
+//         console.log('moused indeed');
+//     })
+// });
+
+
+// const squares = document.querySelectorAll('.gridSquare');
+// squares.forEach(gridSquare => {
+//     //set opacity here?
+//     gridSquare.addEventListener('mouseover', () => {
+//         gridSquare.style.backgroundColor = getRandomColor();
+//     });
+// });
