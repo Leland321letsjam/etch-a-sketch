@@ -2,6 +2,9 @@ function initializeGrid() {
     for (let i = 0; i < 256; i++) {
         const squareCreator = document.createElement('div');
         squareCreator.classList.add('gridSquare');
+        squareCreator.addEventListener('mouseover', () => {
+            squareCreator.style.backgroundColor = getRandomColor();
+        });
         const gridContainer = document.querySelector('.grid-container');
         gridContainer.appendChild(squareCreator);
     }
@@ -13,7 +16,7 @@ function generateNewGrid() {
     
     const gridSize = getGridSize();
 
-    const removeOldGrid = document.querySelectorAll('.gridSquare');
+    const removeOldGrid = document.querySelectorAll('.gridSquare');  //Should keep old grid if cancelled
         removeOldGrid.forEach(div => {
             div.remove();
         });
@@ -22,9 +25,10 @@ function generateNewGrid() {
     for (let i = 0; i < gridSize; i++) {
         const squareCreator = document.createElement('div');
         squareCreator.classList.add('gridSquare');
+        //squareCreator.style.opacity = 1.0; //Move this to css?
         squareCreator.addEventListener('mouseover', () => {
             squareCreator.style.backgroundColor = getRandomColor();
-            // set opacity here?
+            //squareCreator.style.opacity -= 0.1; // set opacity here?
         });
         const gridContainer = document.querySelector('.grid-container');
         gridContainer.appendChild(squareCreator);
@@ -62,11 +66,3 @@ function getRandomColor() {
 
 const newGridButton = document.querySelector('.generate-new-grid');
 newGridButton.addEventListener('click', generateNewGrid);
-
-
-
-
-
-
-
-//testing:
