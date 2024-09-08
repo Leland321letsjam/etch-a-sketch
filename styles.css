@@ -1,0 +1,18 @@
+.grid-container {
+    display: flex;
+    height: 1000px;
+    width: 1000px;
+    /*background-color: blue;*/
+}
+
+.gridSquare {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    height: 24px;
+    width: 24px;
+    display: inline-block;
+    background-color: blue;
+}
+
+/* .generate-new-grid */
