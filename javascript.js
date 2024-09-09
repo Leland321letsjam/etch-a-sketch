@@ -25,12 +25,21 @@ function generateNewGrid() {
     for (let i = 0; i < gridSize; i++) {
         const squareCreator = document.createElement('div');
         squareCreator.classList.add('gridSquare');
-        squareCreator.addEventListener('mouseover', () => {
-            squareCreator.style.backgroundColor = getRandomColor();
-        });
         const gridContainer = document.querySelector('.grid-container');
         gridContainer.appendChild(squareCreator);
     }
+
+    applyMouseOver();
+
+}
+
+function applyMouseOver() {
+    const gridContainer = document.querySelector('.grid-container');
+    gridContainer.addEventListener('mouseover', (event) => {
+        if (event.target.classList.contains('gridSquare')) {
+            event.target.style.backgroundColor = getRandomColor();
+        }
+    });
 
 }
 
