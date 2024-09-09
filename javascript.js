@@ -45,7 +45,7 @@ function getGridSize () {
         if (gridSize === null) {
             return 0;
         } else {
-            alert('Number must be between 1 and 100');
+            alert('Number must be 1 to 100 inclusive');
             gridSize = prompt('Please enter a number 1-100');
         }
         
