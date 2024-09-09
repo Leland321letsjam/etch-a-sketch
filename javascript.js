@@ -1,22 +1,8 @@
-function initializeGrid() {
-    for (let i = 0; i < 256; i++) {
-        const squareCreator = document.createElement('div');
-        squareCreator.classList.add('gridSquare');
-        squareCreator.addEventListener('mouseover', () => {
-            squareCreator.style.backgroundColor = getRandomColor();
-        });
-        const gridContainer = document.querySelector('.grid-container');
-        gridContainer.appendChild(squareCreator);
-    }
-};
+generateNewGrid(16);
 
-initializeGrid();
-
-function generateNewGrid() {
+function generateNewGrid(gridSize) {
     
-    const gridSize = getGridSize();
-
-    const removeOldGrid = document.querySelectorAll('.gridSquare');  //Update this to keep old grid if cancelled
+    const removeOldGrid = document.querySelectorAll('.gridSquare');
         removeOldGrid.forEach(div => {
             div.remove();
         });
@@ -43,6 +29,15 @@ function applyMouseOver() {
 
 }
 
+function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
 function getGridSize () {
     let gridSize = prompt('Please enter a number 1-100');
 
@@ -58,18 +53,9 @@ function getGridSize () {
 
     gridSize = Math.round(gridSize);
     gridSize = gridSize * gridSize;
-    return gridSize;
+    generateNewGrid(gridSize);
 
-}
-
-function getRandomColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
 }
 
 const newGridButton = document.querySelector('.generate-new-grid');
-newGridButton.addEventListener('click', generateNewGrid);
+newGridButton.addEventListener('click', getGridSize);
