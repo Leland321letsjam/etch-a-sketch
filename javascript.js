@@ -1,4 +1,4 @@
-generateNewGrid(16);
+generateNewGrid(256);
 
 function generateNewGrid(gridSize) {
     
@@ -7,11 +7,13 @@ function generateNewGrid(gridSize) {
             div.remove();
         });
     
-
+    const gridContainer = document.querySelector('.grid-container');
+    const containerWidth = gridContainer.clientWidth;
     for (let i = 0; i < gridSize; i++) {
         const squareCreator = document.createElement('div');
         squareCreator.classList.add('gridSquare');
-        const gridContainer = document.querySelector('.grid-container');
+        const squareWidth = containerWidth / (Math.sqrt(gridSize));
+        squareCreator.style.minWidth = `${squareWidth}px`;
         gridContainer.appendChild(squareCreator);
     }
 
